@@ -1,12 +1,7 @@
-const { NotFound } = require("http-errors");
-const { Contact } = require("../../models");
+const { contacts: service } = require("../../services");
 
 const removeContact = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findByIdAndRemove(contactId);
-  if (!result) {
-    throw new NotFound(`Contact with id=${contactId} not found`);
-  }
+  await service.removeContact(req.params.contactId, req.user._id);
   res.json({
     status: "success",
     code: 200,
