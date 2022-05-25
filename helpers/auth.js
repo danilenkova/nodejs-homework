@@ -2,6 +2,7 @@ const { Conflict } = require("http-errors");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const gravatar = require("gravatar");
 const { SECRET_KEY } = process.env;
 
 const { User } = require("../models");
@@ -18,6 +19,11 @@ const createPassword = asyncHandler(async (password) => {
   return hashPassword;
 });
 
+const createAvatar = asyncHandler(async (email) => {
+  const avatarUrl = gravatar.url(email, { s: "250", protocol: "https" });
+  return avatarUrl;
+});
+
 const comparePassword = asyncHandler(async (password, validPassword) => {
   return bcrypt.compareSync(password, validPassword);
 });
@@ -30,6 +36,7 @@ const createToken = (user) => {
 module.exports = {
   checkUser,
   createPassword,
+  createAvatar,
   comparePassword,
   createToken,
 };

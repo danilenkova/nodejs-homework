@@ -7,7 +7,12 @@ const { auth } = require("../../helpers");
 const singup = asyncHandler(async ({ email, password }) => {
   await auth.checkUser(email);
   const hashPassword = await auth.createPassword(password);
-  const newUser = await User.create({ email, password: hashPassword });
+  const avatarURL = await auth.createAvatar(email);
+  const newUser = await User.create({
+    email,
+    password: hashPassword,
+    avatarURL,
+  });
   return newUser;
 });
 
