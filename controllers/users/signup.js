@@ -9,6 +9,7 @@ const singup = async (req, res) => {
       user: {
         email: result.email,
         subscription: result.subscription,
+        avatarURL: result.avatarURL,
       },
     },
   });
