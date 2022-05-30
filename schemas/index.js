@@ -3,11 +3,12 @@ const {
   updateJoiSchema,
   favoriteJoiSchema,
 } = require("./contacts");
-const userJoiSchema = require("./users");
+const { userJoiSchema, verifySchema } = require("./users");
 
 module.exports = {
   ContactJoiSchema,
   updateJoiSchema,
   favoriteJoiSchema,
   userJoiSchema,
+  verifySchema,
 };
