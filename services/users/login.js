@@ -9,6 +9,9 @@ const login = asyncHandler(async ({ email, password }) => {
   if (!user || !comparePassword) {
     throw new Unauthorized("Email or password is wrong");
   }
+  if (!user.verify) {
+    throw new Unauthorized("User not verified");
+  }
   const token = auth.createToken(user);
   await User.findByIdAndUpdate(
     user._id,

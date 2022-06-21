@@ -1,7 +1,7 @@
 const auth = require("./auth");
-const resize = require("./resize");
+const emailService = require("./emailService");
 
 module.exports = {
   auth,
-  resize,
+  emailService,
 };

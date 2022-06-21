@@ -11,4 +11,14 @@ const userJoiSchema = Joi.object({
   }),
 });
 
-module.exports = userJoiSchema;
+const verifySchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    "string.empty": "email cannot be an empty field",
+    "any.required": "missing required email field",
+  }),
+});
+
+module.exports = {
+  userJoiSchema,
+  verifySchema,
+};
